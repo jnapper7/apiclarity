@@ -173,15 +173,15 @@ jobs:
           build-args: |
             OTEL_COLLECTOR_VERSION=${{ env.OTEL_COLLECTOR_VERSION }}
 
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v2
-        with:
-          version: v0.178.0
-          args: release --rm-dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GORELEASER_CURRENT_TAG: ${{ github.event.inputs.version }}
-          GORELEASER_PREVIOUS_TAG: ${{ github.event.inputs.pre_version }}
+      #- name: Run GoReleaser
+      #  uses: goreleaser/goreleaser-action@v2
+      #  with:
+      #    version: v0.178.0
+      #    args: release --rm-dist
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #    GORELEASER_CURRENT_TAG: ${{ github.event.inputs.version }}
+      #    GORELEASER_PREVIOUS_TAG: ${{ github.event.inputs.pre_version }}
 
   helm_release:
     needs: release
@@ -226,10 +226,10 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.2.1
-        with:
-          charts_dir: charts
-          config: charts/cr.yaml
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      #- name: Run chart-releaser
+      #  uses: helm/chart-releaser-action@v1.2.1
+      #  with:
+      #    charts_dir: charts
+      #    config: charts/cr.yaml
+      #  env:
+      #    CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
