@@ -1,8 +1,6 @@
 name: Docker
 on:
-  push:
-    branches:
-      - master
+  push
 
 env:
   OTEL_COLLECTOR_VERSION: 0.60.0
@@ -43,7 +41,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          tags: ghcr.io/openclarity/apiclarity:latest
+          tags: apiclarity:latest
           file: Dockerfile
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -57,7 +55,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: plugins
-          tags: ghcr.io/openclarity/kong-plugin:latest
+          tags: kong-plugin:latest
           file: plugins/Dockerfile.kong
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -74,7 +72,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: plugins
-          tags: ghcr.io/openclarity/tyk-plugin-v3.2.2:latest
+          tags: tyk-plugin-v3.2.2:latest
           file: plugins/Dockerfile.tyk.v3.2.2
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -84,7 +82,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: plugins
-          tags: ghcr.io/openclarity/passive-taper:latest
+          tags: passive-taper:latest
           file: plugins/Dockerfile.taper
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -96,7 +94,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: plugins
-          tags: ghcr.io/otel-apiclarityexporter:latest
+          tags: otel-apiclarityexporter:latest
           file: plugins/Dockerfile.otel-collector
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
