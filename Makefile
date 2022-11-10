@@ -107,7 +107,8 @@ lint: bin/golangci-lint ## Run linter
 	cd plugins/gateway/kong && ../../../bin/golangci-lint run
 	cd plugins/gateway/tyk/v3.2.2 && ../../../../bin/golangci-lint run
 	cd plugins/taper && ../../bin/golangci-lint run
-	cd plugins/otel-collector/apiclarityexporter && ../../../bin/golangci-lint run
+	cd plugins/otel-collector/apiclarityexporter && ../../../bin/golangci-lint run \
+	  --skip-files '../../../../../../go/pkg/mod/github.com/klauspost/compress'
 
 .PHONY: fix
 fix: bin/golangci-lint ## Fix lint violations
@@ -127,12 +128,10 @@ bin/licensei-${LICENSEI_VERSION}:
 .PHONY: license-check
 license-check: bin/licensei ## Run license check
 	bin/licensei header
-	cd backend && ../bin/licensei cache --config=../.licensei.toml && cat .licensei.cache
 	cd backend && ../bin/licensei check --config=../.licensei.toml
 	cd plugins/gateway/kong && ../../../bin/licensei check --config=../../../.licensei.toml
 	cd plugins/gateway/tyk/v3.2.2 && ../../../../bin/licensei check --config=../../../../.licensei.toml
 	cd plugins/taper && ../../bin/licensei check --config=../../.licensei.toml
-	cd plugins/otel-collector/apiclarityexporter && ../../../bin/licensei cache --config=../../../.licensei.toml && cat .licensei.cache
 	cd plugins/otel-collector/apiclarityexporter && ../../../bin/licensei check --config=../../../.licensei.toml
 
 .PHONY: license-cache
