@@ -130,11 +130,9 @@ license-check: bin/licensei ## Run license check
 	bin/licensei header
 	bin/licensei cache && cat .licensei.cache
 	cd backend && ../bin/licensei check --config=../.licensei.toml
-	cd plugins/gateway/kong && ../../../bin/licensei cache --config=../../../.licensei.toml && cat .licensei.cache
 	cd plugins/gateway/kong && ../../../bin/licensei check --config=../../../.licensei.toml
-	cd plugins/gateway/tyk/v3.2.2 && ../../../../bin/licensei cache --config=../../../../.licensei.toml && cat .licensei.cache
 	cd plugins/gateway/tyk/v3.2.2 && ../../../../bin/licensei check --config=../../../../.licensei.toml
-	cd plugins/taper && ../../bin/licensei cache --config=../../.licensei.toml && .licensei.cache
+	cd plugins/taper && ../../bin/licensei cache --config=../../.licensei.toml && cat .licensei.cache
 	cd plugins/taper && ../../bin/licensei check --config=../../.licensei.toml
 	cd plugins/otel-collector/apiclarityexporter && ../../../bin/licensei check --config=../../../.licensei.toml
 
